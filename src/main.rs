@@ -4,8 +4,12 @@
 
 mod story;
 mod actions;
+mod config;
 
 fn main() {
+	// Get config values from config.toml
+	//println!("{:#?}", config::get_config());
+
 	// Story directory, what is the name of the directory we should look in for story files.
 	let story_dir = "story/";
 	// Initial file to load, this should be the file path relative to the "story/" directory and without extension
@@ -17,5 +21,5 @@ fn main() {
 	let initial_file_path = story_dir.to_owned() + initial_file + extension_type;
 
 	// Start running the story file
-	story::parse(&initial_file_path, true);
+	story::parse(&initial_file_path, 0, true);
 }

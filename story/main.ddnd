@@ -9,6 +9,7 @@
 # |                                                                           |
 # |  - Scraft161                                                              |
 # |---------------------------------------------------------------------------|
+!loadScene: 3
    --=[[ WELCOME TO DDND! ]]=--
 
 DDND or "Drunk Dungeons aNd Dragons" is a primitive scripting engine for both old-school dungeon crawlers and text-based visual novels.

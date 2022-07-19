@@ -11,3 +11,4 @@ edition = "2021"
 regex = "1.6.0"
 lazy_static = "1.4.0"
 ansi-escapes = "0.1.1" # Avoiding ANSI escape sequenses in our code, it's already unreadable enough
+toml = "0.5.9"

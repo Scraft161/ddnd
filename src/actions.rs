@@ -18,8 +18,9 @@ pub fn run_action(item: &str, file_path: &str) {
 
 	// Use the action to jump to the proper function
 	match &action_pair["action"] {
-		"loadScenario" => load_file(&action_pair["argument"], true),
-		"loadScenarioReturn" => load_file(&action_pair["argument"], false),
+		"loadScene" => load_scene(&action_pair["argument"]),
+		"loadScenario" => load_file(&action_pair["argument"], 0, true),
+		"loadScenarioReturn" => load_file(&action_pair["argument"], 0, false),
 		_ => unknown_action(&action_pair["action"], file_path),
 	}
 
@@ -33,11 +34,17 @@ pub fn run_action(item: &str, file_path: &str) {
 	//println!("Key: {}\nValue: {}", &pair["key"], &pair["val"]);
 }
 
-fn load_file(argument: &str, noreturn: bool) {
+fn load_scene(argument: &str) {
+	let scene_vector: u8 = argument.parse().unwrap();
+
+	println!("Jumping to id: {}", scene_vector);
+}
+
+fn load_file(argument: &str, target_scene: u8, noreturn: bool) {
 	// Temp hack for file load testing
 	let file_path = "story/".to_owned() + argument + ".ddnd";
 
-	story::parse(&file_path, noreturn);
+	story::parse(&file_path, target_scene, noreturn);
 }
 
 fn unknown_action(action: &str, file: &str) {

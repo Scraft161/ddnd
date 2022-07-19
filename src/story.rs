@@ -19,7 +19,8 @@ use crate::actions;
 }*/
 
 // load the given storyfile and parse it.
-pub fn parse(file_path: &str, noreturn: bool) {
+pub fn parse(file_path: &str, target_scene: u8, noreturn: bool) {
+	let mut current_scene: u8 = 0;
 	println!("[INFO]: Looking for file: {}", file_path);
 
 	let file_content = fs::read_to_string(file_path)
@@ -28,12 +29,12 @@ pub fn parse(file_path: &str, noreturn: bool) {
 	// Now we start interpreting the file
 	let scenario_per_line = file_content.split("\n");
 
-	new_scene();
+	current_scene = new_scene(current_scene);
 
 	scenario_per_line.for_each(|item: &str|
 		//println!("> {}", item),
 		match item {
-			"---" => new_scene(),
+			"---" => current_scene = new_scene(current_scene),
 			_ if item.starts_with("!") => actions::run_action(item, file_path),
 			_ if item.starts_with("#") => (),	// Lines starting with a "#" will be comments
 			"" => println!("{}", item),
@@ -50,11 +51,13 @@ pub fn parse(file_path: &str, noreturn: bool) {
 	}
 }
 
-pub fn new_scene() {
+pub fn new_scene(mut current_scene: u8) -> u8 {
 	// Initialize a new scene.
 	write!(io::stdout(), "{}", ansi_escapes::ClearScreen).unwrap();
-	
-	//println!("[DBG]: Changed Scene.");
+
+	current_scene = current_scene + 1;
+
+	return current_scene;
 }
 
 fn line_print(text: &str) {
