@@ -33,13 +33,14 @@ pub fn parse(file_path: &str) {
 		match item {
 			"---" => new_scene(),
 			_ if item.starts_with("!") => run_action(item),
+			_ if item.starts_with("#") => (),	// Lines starting with a "#" will be comments
 			"" => println!("{}", item),
 			_ => line_print(item),
 		}
 	);
 
 	// This point should only be reached when we run out of file.
-	// To prevent undocumented behavior we just panic here.
+	// To prevent undocumented behavior we just exit here.
 	println!("[DDND]: Reached end of story file, that's all folks");
 	exit(0);
 }

@@ -1,18 +1,101 @@
-!location: Your room
-You are in your room.
-With only the dimly lit space around you your screen illuminates the area around you.
+# |---------------------------------------------------------------------------|
+# | Hey there, you probably opened this file because the game mentioned you   |
+# | could just open it in notepad. (or you're here to just write your own     |
+# | game, in which case ignore this comment and have fun)                     |
+# | That said, I don't recommend just scrolling through without the tutorial  |
+# | guiding you. The tutorial is meant as an introduction to ddnd and is a    |
+# | great resource on getting started with neat examples. But hey, I'm just a |
+# | disclaimer in a file and I can't stop you, so have fun. ;P                |
+# |                                                                           |
+# |  - Scraft161                                                              |
+# |---------------------------------------------------------------------------|
+   --=[[ WELCOME TO DDND! ]]=--
 
-You are thirsty and decide to stand up to grab a drink.
+DDND or "Drunk Dungeons aNd Dragons" is a primitive scripting engine for both old-school dungeon crawlers and text-based visual novels.
+DDND is completely written in the Rust programming language to leverage speed, portability, and memory-safe code.
+
+> Why should I care?
+Well, because of this you can be sure your scripts abide by these same rules.
+
+Additionally, we offer a no-nonsense approach to making your own stories so you can focus more on writing and less on checking your own code.
+
+So, what are you waiting on, let's get scripting! ->
 ---
-You Open the door to the hallway and walk through it towards the kitchen.
+   --=[[ The basics of ddnd. ]]=--
 
-When you enter the kitchen you don't even hesitate to open the fridge as if this movement was programmed into you at birth.
-It was only normal as this was the most exercise you have in your life.
+ddnd is the scripting language used by DDND, (we know it is confusing, but it's not as big of a deal as you think)
 
-Grabbing your drink and closing the fridge, you walk back through the hallway and return to your room.
+ddnd is an interpreted language, if you don't know what this means; it means that your scripts get run directly by the DDND engine instead of having to convert them to something your computer can understand.
+Because of this, both writing and debugging your scripts is an easy and quick process.
+
+It also allows you to easily modify the file that THIS tutorial is made in without any barriers.
+In fact, you can do so by just going to the "story" folder and opening the "main.ddnd" file with notepad.
+As you can see, this is a very simple format, and if you're a bit clever you probably have already figured out the syntax from doing so.
+
+That said, you shouldn't modify anything as of yet since this tutorial will go through every step of teaching you how things work and how to make your things work.
 ---
-!location: Your room
-Back behind the familiar screen of your computer you find you have nothing better to do than argue with some stranger on the internet.
-You don't do it because you are mad at him, you just mildly disagree over what type of cable is better.
+Why can't I see my changes in real time?
 
-But somehow it is the most entertainment you have in your sad and lonely life.
+As of now DDND doesn't support a live-preview mode.
+That said, your entire project does not get loaded when the engine starts.
+
+DDND is a very small engine and doesn't load any files it doesn't need.
+Rather DDND uses an on-demand loading system where files get loaded whenever they are needed.
+On older hardware and with larger files this might be a problem because files don't get loaded ahead of time, but since modern-day systems are so fast and the ddnd scripts tend to be tiny compared to other filetypes this is not even noticable.
+
+So what files do get loaded when the engine starts?
+
+Well, only the "main.ddnd"
+Because of this you can start the engine, modify a file that is not the main.ddnd and the engine will pick up on your changes.
+
+Now that we have all this prelude out of the way, let's take a look through all the scripting features.
+---
+   --=[[ Senarios and Scenes ]]=--
+
+every game made in DDND has at least 1 scenario and at least 1 scene.
+
+A scenario is just another name for a file, but instead of saying "I'm editing the `main.ddnd` file." we say "I'm editing the main scenario."
+Scenarios only start when another scenario calls for them with one crucial exception.
+
+The main scenario gets loaded when the game starts.
+
+
+Scenes on the other hand are sections of a scenario.
+You've probably seen that the screen clears every once in a while.
+Well, that is just simply the engine switching to another scene.
+
+If you're a bit cheeky and look at the code for this scenario you have probably realized that they are bound to a certain string in the file.
+If you haven't, you can do so by putting "---" on a new line
+--- 
+Sort of like the text above this one.
+That said, there is a crucial difference, the line can only contain these three dashes and no other characters.
+that's how I managed to smuggle that scene delimiter into the text displayed on your screen.
+
+A scene delimiter only needs to be put in-between two scenes and is not required at the beginning or end of a scenario (the engine is smart enough to do this for you)
+
+As a last note, there shouldn't be any blank lines before of after the scene delimiter unless you want them for visual purposes.
+---
+   --=[[ Text and Comments ]]=--
+
+Pretty much 80-99% of your scenarios are going to be just text, so why bother with putting the scripting aspect first.
+If you've used Ren'Py you've probably had that question, or one like "Why put all text in quotation marks?"
+
+Well, that's because Ren'Py put the scripting aspect of making visual novels first.
+And while this is amazing if most of what you do is just scripting, but many people want to write a form of interactive book with a choice every once in a while.
+
+That is where an engine putting the text or writing aspect first comes into play.
+The goal is to make it easier and faster to write normal text and dialogue and have a capable scripting language ready when you need it.
+That is why in ddnd you don't have to put stuff before or around text, this is reserved for the scripting part of ddnd.
+
+Of course, you do not want every line you write to show up in your game.
+And if you looked in the source file you might have noticed the banner of text that got ignored by the engine.
+Well, that is what is called a comment.
+
+Comments are lines of text that start with a "#" and the engine will just ignore them.
+# This line is in fact a great example of that.
+That said, the "#" does have to be the first character on the line, so for example
+ # This line is not a great example of a comment
+
+Comments are good for when you have to explain what you did so you never run into the following situation:
+> When I wrote this code; only God and I knew what it did.
+> Now only God knows
