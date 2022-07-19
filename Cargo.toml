@@ -1,0 +1,13 @@
+[package]
+name = "ddnd"
+description = "Drunk Dungeons And Dragons, a simple text-based dungeon crawler meets visual novel engine"
+version = "0.1.0"
+edition = "2021"
+#authors = "Scraft161"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+regex = "1.6.0"
+lazy_static = "1.4.0"
+ansi-escapes = "0.1.1" # Avoiding ANSI escape sequenses in our code, it's already unreadable enough
