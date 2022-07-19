@@ -39,7 +39,7 @@ pub fn parse(file_path: &str) {
 	);
 
 	// This point should only be reached when we run out of file.
-	// To prevent undocumented behavior we just panic here.
+	// To prevent undocumented behavior we just exit here.
 	println!("[DDND]: Reached end of story file, that's all folks");
 	exit(0);
 }
