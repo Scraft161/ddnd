@@ -3,6 +3,7 @@
 */
 
 mod story;
+mod actions;
 
 fn main() {
 	// Story directory, what is the name of the directory we should look in for story files.
@@ -16,5 +17,5 @@ fn main() {
 	let initial_file_path = story_dir.to_owned() + initial_file + extension_type;
 
 	// Start running the story file
-	story::parse(&initial_file_path);
+	story::parse(&initial_file_path, true);
 }

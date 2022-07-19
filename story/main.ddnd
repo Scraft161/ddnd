@@ -99,3 +99,14 @@ That said, the "#" does have to be the first character on the line, so for examp
 Comments are good for when you have to explain what you did so you never run into the following situation:
 > When I wrote this code; only God and I knew what it did.
 > Now only God knows
+---
+   --=[[ Loading Scenarios ]]=--
+
+You can load another scenario by using the `loadScenario` action.
+Loading another scenario will have that scenario take over with the game exiting once the new scenario ends.
+
+
+Alternatively you can use `loadScenarioReturn` to return to the previous scenario instead.
+This will resume the previous scenario right after the `loadScenarioReturn`
+
+Do note that `loadScenarioReturn` does not automatically start a new scene upon returning back to the previous scenario.
