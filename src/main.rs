@@ -8,18 +8,15 @@ mod config;
 
 fn main() {
 	// Get config values from config.toml
-	//println!("{:#?}", config::get_config());
+	let global_config = config::get_config();
 
-	// Story directory, what is the name of the directory we should look in for story files.
-	let story_dir = "story/";
-	// Initial file to load, this should be the file path relative to the "story/" directory and without extension
-	let initial_file = "main";
-	// Extension type, simple string with the character sequence after the "."
-	let extension_type = ".ddnd";
+	let story_dir: String = global_config.story_dir.unwrap_or("story".to_owned());
+	let initial_file: String = global_config.initial_file.unwrap_or("main".to_owned());
+	let extension: String = global_config.extension.unwrap_or("ddnd".to_owned());
 
 	// get the path to the initial file.
-	let initial_file_path = story_dir.to_owned() + initial_file + extension_type;
-
+	let initial_file_path = format!("{}/{}.{}", story_dir, initial_file, extension);
+	
 	// Start running the story file
 	story::parse(&initial_file_path, 0, true);
 }

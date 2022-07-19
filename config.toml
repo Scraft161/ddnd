@@ -1,4 +1,3 @@
-[config]
 story_dir = "story"
 initial_file = "main"
-extension_type = "ddnd"
+extension = "ddnd"
